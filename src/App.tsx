@@ -1,37 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
 import { generateItems, renderLog } from "./utils";
-
-// 타입 정의
-interface Item {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-}
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
-interface Notification {
-  id: number;
-  message: string;
-  type: "info" | "success" | "warning" | "error";
-}
-
-// AppContext 타입 정의
-interface AppContextType {
-  theme: string;
-  toggleTheme: () => void;
-  user: User | null;
-  login: (email: string, password: string) => void;
-  logout: () => void;
-  notifications: Notification[];
-  addNotification: (message: string, type: Notification["type"]) => void;
-  removeNotification: (id: number) => void;
-}
+import { AppContextType, Item, User, Notification } from "./interfaces";
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -101,7 +70,7 @@ export const ItemList: React.FC<{
   const filteredItems = items.filter(
     (item) =>
       item.name.toLowerCase().includes(filter.toLowerCase()) ||
-      item.category.toLowerCase().includes(filter.toLowerCase()),
+      item.category.toLowerCase().includes(filter.toLowerCase())
   );
 
   const totalPrice = filteredItems.reduce((sum, item) => sum + item.price, 0);
@@ -305,7 +274,7 @@ const App: React.FC = () => {
 
   const removeNotification = (id: number) => {
     setNotifications((prev) =>
-      prev.filter((notification) => notification.id !== id),
+      prev.filter((notification) => notification.id !== id)
     );
   };
 
