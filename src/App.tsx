@@ -1,17 +1,19 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState } from "react";
 import { generateItems, renderLog } from "./utils";
 import { AppContextType, Item, User, Notification } from "./interfaces";
+import useAppContext from "./hooks/useAppContext";
+import AppContext from "./context/create";
 
-const AppContext = createContext<AppContextType | undefined>(undefined);
+// const AppContext = createContext<AppContextType | undefined>(undefined);
 
 // 커스텀 훅: useAppContext
-const useAppContext = () => {
-  const context = useContext(AppContext);
-  if (context === undefined) {
-    throw new Error("useAppContext must be used within an AppProvider");
-  }
-  return context;
-};
+// const useAppContext = () => {
+//   const context = useContext(AppContext);
+//   if (context === undefined) {
+//     throw new Error("useAppContext must be used within an AppProvider");
+//   }
+//   return context;
+// };
 
 // Header 컴포넌트
 export const Header: React.FC = () => {
